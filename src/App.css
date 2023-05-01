@@ -1,0 +1,22 @@
+body {
+  font-family: "IBM Plex Sans";
+}
+
+.main {
+  margin: 0 auto;
+  width: 1230px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*----------Presentation---*/
+
+.presentation {
+  display: flex;
+  gap: 20px;
+}
+.presentation img {
+  width: 350px;
+}
