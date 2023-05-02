@@ -1,22 +1,126 @@
 body {
-  font-family: "IBM Plex Sans";
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-.main {
+h1 {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 50px;
+}
+h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+h3 {
+  line-height: 28px;
+  font-size: 19px;
+  color: #808484;
+}
+h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+h5 {
+  font-size: 14px;
+  line-height: 20px;
+  color: #808484;
+}
+.container {
   margin: 0 auto;
   width: 1230px;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+}
+
+/*----------Header-------*/
+header {
+  height: 60px;
+  border-bottom: 1px solid #f3f5f5;
+  margin-bottom: 20px;
+}
+header img {
+  height: 60px;
 }
 
 /*----------Presentation---*/
 
-.presentation {
+.presentation .container {
   display: flex;
-  gap: 20px;
+  gap: 25px;
+  margin-bottom: 30px;
+}
+.presentation span {
+  width: 830px;
 }
 .presentation img {
   width: 350px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+/*--------Main----------*/
+main {
+  background-color: #f3f5f5;
+  padding-top: 20px;
+}
+
+main.container {
+  padding-top: 20px;
+  display: flex;
+  gap: 30px;
+}
+
+main .left {
+  gap: 25px;
+  width: 68%;
+}
+main h5 {
+  height: 50px;
+  font-size: 17px;
+  color: #808484;
+}
+
+main .meals-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin-bottom: 30px;
+}
+
+main article {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+
+  background-color: white;
+  width: calc((100% - 25px) / 2);
+  height: 160px;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+main img {
+  width: 130px;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
+main .meal-description {
+  font-size: 14px;
+  line-height: 20px;
+  height: 43px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+main .price-popular {
+  display: flex;
+  gap: 15px;
+}
+.popular {
+  color: #ff8001;
+  gap: 15px;
 }

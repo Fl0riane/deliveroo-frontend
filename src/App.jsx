@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import { useEffect } from "react";
-import Header from "./assets/Header";
 
+import Header from "./assets/components/Header";
+import Meal from "./assets/components/Meal";
 import "./App.css";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+library.add(faStar);
 
 function App() {
   const [data, setData] = useState();
@@ -13,7 +16,7 @@ function App() {
     const fetchData = async () => {
       try {
         const response = await axios.get("http://localhost:3000/");
-        console.log(response.data);
+        // console.log(response.data);
         setData(response.data);
         setIsLoading(false);
       } catch (error) {
@@ -23,54 +26,48 @@ function App() {
     fetchData();
   }, []);
 
-  return (
+  return isLoading ? (
+    <p>Loading ...</p>
+  ) : (
     <div>
-      <Header />
+      <header>
+        <Header />
+      </header>
       <div>
-        {isLoading ? (
-          <p>Loading ...</p>
-        ) : (
-          <div className="main">
-            <section className="presentation">
-              <span>
-                <h1> {data.restaurant.name}</h1>
-                <p>{data.restaurant.description}</p>
-              </span>
-              <img src="https://f.roocdn.com/images/menus/17697/header-image.jpg"></img>
-            </section>
-            <section>
-              <h2>
-                {data.categories.map((categorie) => {
+        <section className="presentation">
+          <div className="container">
+            <div>
+              <h1> {data.restaurant.name}</h1>
+              <h3>{data.restaurant.description}</h3>
+            </div>
+            <img src={data.restaurant.picture} alt="tartines"></img>
+          </div>
+        </section>
+        <main>
+          <div className="container">
+            <section className="left">
+              {data.categories.map((category) => {
+                if (category.meals.length !== 0) {
                   return (
-                    <div key={categorie.path} className="categorie">
-                      <h2>{categorie.name}</h2>
-                      <div>
-                        {
-                          data.categories.meals.map((elem, id) => {
-                            return (
-                              <div key={id}>
-                                <h3>{elem.title}</h3>
-                                <h4>{elem.description}</h4>
-                                <p>{elem.price}</p>
-                              </div>
-                            );
-                          }).title
-                        }
+                    <div key={category.path} className="categorie">
+                      <h2>{category.name}</h2>
+                      <div className="meals-container">
+                        {category.meals.map((meal) => {
+                          // console.log(categorie.meals);
+                          console.log(meal);
+                          return <Meal key={meal.id} meal={meal} />;
+                        })}
                       </div>
-                      <h4>{categorie.description}</h4>
-                      <p>{categorie.price}</p>
                     </div>
                   );
-                })}
-              </h2>
-              <span></span>
+                } else {
+                  return null;
+                }
+              })}
             </section>
-            <section></section>
-            <section></section>
-            <section></section>
-            <section></section>
+            <section className="col"></section>
           </div>
-        )}
+        </main>
       </div>
     </div>
   );
